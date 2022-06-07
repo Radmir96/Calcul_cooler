@@ -103,7 +103,7 @@ class AirFan220:
                           '350': dict_parametrs_350,
                           '550': dict_parametrs_550, '630': dict_parametrs_630}
 
-    def __init__(self, modul_coller=None, requied_air_flow=0, manufacturers='Weiguang'):
+    def __init__(self, modul_coller=None, requied_air_flow=float(0), manufacturers='Weiguang'):
         self.name_fan = modul_coller
         self.requied_air_flow = requied_air_flow
         self.manufacturers = manufacturers
@@ -136,60 +136,44 @@ class AirFan220:
             self.power = self.dict_parameters['Power']
             self.air_consumption = self.dict_parameters['Air_consumption']
             self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_400['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_400['Air_consumption']:
-            self.name_fan = 'MO3'
+        elif self.requied_air_flow > self.dict_parametrs_250['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_400['Air_consumption']:
+            self.name_fan = 'MO3 or MO4'
             self.dict_parameters = self.dict_impeller_diam['400']
             self.power = self.dict_parameters['Power']
             self.air_consumption = self.dict_parameters['Air_consumption']
             self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_400['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_400['Air_consumption']:
-            self.name_fan = 'MO4'
-            self.dict_parameters = self.dict_impeller_diam['400']
-            self.power = self.dict_parameters['Power']
-            self.air_consumption = self.dict_parameters['Air_consumption']
-            self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_450['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_450['Air_consumption']:
+        elif self.requied_air_flow > self.dict_parametrs_400['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_450['Air_consumption']:
             self.name_fan = 'MO5'
             self.dict_parameters = self.dict_impeller_diam['450']
             self.power = self.dict_parameters['Power']
             self.air_consumption = self.dict_parameters['Air_consumption']
             self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_500['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_500['Air_consumption']:
+        elif self.requied_air_flow > self.dict_parametrs_450['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_500['Air_consumption']:
             self.name_fan = 'MO6'
             self.dict_parameters = self.dict_impeller_diam['500']
             self.power = self.dict_parameters['Power']
             self.air_consumption = self.dict_parameters['Air_consumption']
             self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_550['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_550['Air_consumption']:
+        elif self.requied_air_flow > self.dict_parametrs_500['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_550['Air_consumption']:
             self.name_fan = 'MO7'
             self.dict_parameters = self.dict_impeller_diam['550']
             self.power = self.dict_parameters['Power']
             self.air_consumption = self.dict_parameters['Air_consumption']
             self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_630['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_630['Air_consumption']:
+        elif self.requied_air_flow > self.dict_parametrs_550['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_630['Air_consumption']:
             self.name_fan = 'MO8'
             self.dict_parameters = self.dict_impeller_diam['630']
             self.power = self.dict_parameters['Power']
             self.air_consumption = self.dict_parameters['Air_consumption']
             self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_400['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_400['Air_consumption']:
-            self.name_fan = 'MO10'
-            self.dict_parameters = self.dict_impeller_diam['400']
-            self.power = self.dict_parameters['Power']
-            self.air_consumption = self.dict_parameters['Air_consumption']
-            self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_500['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_500['Air_consumption']:
-            self.name_fan = 'MO12'
+        elif self.requied_air_flow > self.dict_parametrs_630['Air_consumption'] and self.requied_air_flow <= (self.dict_parametrs_500['Air_consumption']*2):
+            self.name_fan = 'MO12 or MO16'
             self.dict_parameters = self.dict_impeller_diam['500']
             self.power = self.dict_parameters['Power']
             self.air_consumption = self.dict_parameters['Air_consumption']
             self.impeller_speed = self.dict_parameters['Impeller_speed']
-        elif self.requied_air_flow > self.dict_parametrs_500['Air_consumption'] and self.requied_air_flow <= self.dict_parametrs_500['Air_consumption']:
-            self.name_fan = 'MO16'
-            self.dict_parameters = self.dict_impeller_diam['500']
-            self.power = self.dict_parameters['Power']
-            self.air_consumption = self.dict_parameters['Air_consumption']
-            self.impeller_speed = self.dict_parameters['Impeller_speed']
+        elif self.requied_air_flow > (self.dict_parametrs_500['Air_consumption']*2):
+            print('К сожалению вентиляторов большей производительности нет.')
         else:
             print('Вы ввели неккоректное значение расхода воздуха.')
 
@@ -295,6 +279,6 @@ class Air:
 # print(radiator1)
 # fan1 = Air_fan_12_or_24('MO1')
 # print(fan1)
-fan2 = AirFan220(requied_air_flow=2)
+fan2 = AirFan220(modul_coller=0.5)
 fan2.add()
 print(fan2)
